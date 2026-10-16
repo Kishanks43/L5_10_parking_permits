@@ -1,7 +1,7 @@
 """Campus parking permit management system."""
 
 import json
-import random
+import secrets
 from datetime import datetime, timedelta
 
 
@@ -14,7 +14,7 @@ def register_permit(vehicle_plate, zone_id, zone_records=None):
     if zone_records is None:
         zone_records = []
 
-    permit_no = "P" + str(random.randint(10000, 99999))
+    permit_no = "P" + str(10000 + secrets.randbelow(90000))
     expiry = datetime.now() + timedelta(days=180)
 
     permits[vehicle_plate] = {
